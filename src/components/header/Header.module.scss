@@ -2,7 +2,7 @@
   width: 100%;
   position: fixed;
   top: 0;
-  transition: all 0.5s;
+  transition: top 0.5s;
   z-index: 9;
 }
 
@@ -11,9 +11,10 @@ header {
   background-color: var(--dark-blue);
   color: #fff;
 
+
   .header {
+    color: #fff;
     width: 100%;
-    height: 8rem;
     max-width: 1000px;
     margin: 0 auto;
     padding: 1rem;
@@ -21,12 +22,14 @@ header {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    height: 8rem;
   }
 
   .logo a h2 {
     width: 25%;
     color: #fff;
     cursor: pointer;
+
     span {
       color: orangered;
     }
@@ -36,40 +39,50 @@ header {
     width: 75%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    
     ul {
       display: flex;
-      justify-content: space-between;
       list-style: none;
+      justify-content: center;
 
       .logo-mobile {
         display: none;
       }
+    }
 
-      li {
-        margin: 0 5px;
-        a {
-          color: #fff;
-          &:hover {
-            color: orangered;
-          }
+    li {
+      margin: 0 5px;
+
+      a {
+        color: #fff;
+
+        &:hover {
+          color: orangered;
         }
       }
     }
   }
 
+  
   .header-right {
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     .cart a {
       display: flex;
       color: #fff;
       position: relative;
+
       &:hover {
         color: orangered;
       }
-      &.active {
+
+      &:active {
         color: var(--color-danger);
       }
+
       p {
         position: absolute;
         top: -1rem;
@@ -89,10 +102,12 @@ header {
     .links a {
       margin: 0 5px;
       color: #fff;
+
       &:hover {
         color: orangered;
       }
-      &.active {
+
+      &:active {
         color: var(--color-danger);
       }
     }
@@ -104,18 +119,19 @@ header {
   }
 
   @media screen and (max-width: 800px) {
+
     nav {
       display: block;
       position: absolute;
       top: 0;
       left: 0;
       width: 50%;
+      padding: 1rem;
       height: 100vh;
       background-color: var(--dark-blue);
-      padding: 1rem;
       z-index: 999;
       transform: translateX(-200%);
-      transition: all 0.3s;
+     
 
       .nav-wrapper {
         position: absolute;
@@ -124,94 +140,228 @@ header {
         width: 100%;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.5);
-        transform: translateX();
         transition: all 0.3s;
-      }
 
-      .show-nav-wrapper {
+              }
+
+       .show-nav-wrapper {
         transform: translateX(100%);
+         }
+      .logo a h2 span {
+        color: blue;
       }
 
       ul {
         display: block;
+
         .logo-mobile {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          > * {
+
+          >* {
             cursor: pointer;
           }
         }
-        li {
-          padding: 5px 0;
-          border-bottom: 1px solid #333;
-          a {
-            display: block;
-          }
+      }
+
+      li {
+        padding: 5px 0;
+        border-bottom: 1px solid #333;
+
+        a {
+          display: block;
         }
       }
 
       .header-right {
         display: block;
+
         .cart {
-          // display: block;
-          // padding: 5px 0;
-          border-bottom: 1px solid #333;
-          // a {
-          //   position: relative;
-          //   p {
-          //     position: absolute;
-          //     top: -1rem;
-          //     left: 5rem;
-          //     font-weight: 500;
-          //   }
-          // }
+          display: block;
+          padding: 10px 0;
+
+
+          a {
+            position: relative;
+            border-bottom: 1px solid #333;
+
+            p {
+              position: absolute;
+              top: -1rem;
+              left: 5rem;
+            }
+          }
         }
 
         .links {
           display: block;
+
           a {
             display: block;
-            margin: 0;
-            padding: 5px 0;
             border-bottom: 1px solid #333;
+            padding: 10px 0;
+            margin: 0;
+
           }
         }
       }
     }
+
     .cart {
-      display: block;
-      padding: 5px 0;
-      // border-bottom: 1px solid #333;
-      a {
-        color: #fff;
-        position: relative;
-        &:hover {
-          color: orangered;
-        }
-        p {
-          position: absolute;
-          top: -1rem;
-          left: 5rem;
-          font-weight: 500;
+        display: block;
+        padding: 5px 0;
+
+        a {
           color: #fff;
-        }
-      }
+          position: relative;
+
+          &:hover {
+            color: orangered;
+          }
+
+          p {
+            position:absolute;
+            top: -1.6rem;
+            left: 5.1rem;
+            font-weight: 500;
+            color: #fff;
+           
+          }
+        }      
     }
     .show-nav {
-      transform: translateX(0);
-    }
+            transform: translateX(0);
+          }
     .hide-nav {
-      transform: translateX(-200%);
-    }
+            transform: translateX(-200%)
+          }
     .menu-icon {
-      display: flex;
-      > * {
-        margin-left: 2rem;
-      }
-    }
+              display: flex;
+              > * {
+                margin-left: 3rem;
+              }
+            }
+          }
   }
-}
+
+
+
+
+
+// ***************************************************
+
+
+//   @media screen and (max-width: 800px) {
+
+//     nav {
+//       display: block;
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: 50%;
+//       height: 100vh;
+//       background-color: var(--dark-blue);
+//       padding: 1rem;
+//       z-index: 999;
+//       transform: translateX(-200%);
+//       transition: all 0.3s;
+
+//       .nav-wrapper {
+//         position: absolute;
+//         top: 0;
+//         right: 0;
+//         width: 100%;
+//         height: 100vh;
+//         background-color: rgba(0, 0, 0, 0.5);
+//         transform: translateX();
+//         transition: all 0.3s;
+//       }
+
+//       .show-nav-wrapper {
+//         transform: translateX(100%);
+//       }
+
+//       ul {
+//         display: block;
+//         .logo-mobile {
+//           display: flex;
+//           justify-content: space-between;
+//           align-items: center;
+//           > * {
+//             cursor: pointer;
+//           }
+//         }
+//         li {
+//           padding: 5px 0;
+//           border-bottom: 1px solid #333;
+//           a {
+//             display: block;
+//           }
+//         }
+//       }
+
+//       .header-right {
+//         display: block;
+//         .cart {
+//           // display: block;
+//           // padding: 5px 0;
+//           border-bottom: 1px solid #333;
+//           // a {
+//           //   position: relative;
+//           //   p {
+//           //     position: absolute;
+//           //     top: -1rem;
+//           //     left: 5rem;
+//           //     font-weight: 500;
+//           //   }
+//           // }
+//         }
+
+//         .links {
+//           display: block;
+//           a {
+//             display: block;
+//             margin: 0;
+//             padding: 5px 0;
+//             border-bottom: 1px solid #333;
+//           }
+//         }
+//       }
+//     }
+//     .cart {
+//       display: block;
+//       padding: 5px 0;
+//       border-bottom: 1px solid #333;
+//       a {
+//         color: #fff;
+//         position: relative;
+//         &:hover {
+//           color: orangered;
+//         }
+//         p {
+//           position: absolute;
+//           top: -1rem;
+//           left: 5rem;
+//           font-weight: 500;
+//           color: #fff;
+//         }
+//       }
+//     }
+//     .show-nav {
+//       transform: translateX(0);
+//     }
+//     .hide-nav {
+//       transform: translateX(-200%);
+//     }
+//     .menu-icon {
+//       display: flex;
+//       > * {
+//         margin-left: 2rem;
+//       }
+//     }
+//   }
+// }
 
 .active {
   position: relative;

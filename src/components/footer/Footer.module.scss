@@ -1,12 +1,11 @@
-.footer {
-  background-color: var(--dark-blue);
-  color: #fff;
-  font-size: 1.6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 8rem;
-  p {
+.footer{
+    background-color:  var(--dark-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    height: 8rem;
+    width: 100%;
+    margin: auto;
     color: #fff;
-  }
 }
