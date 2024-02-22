@@ -1,16 +1,60 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './auth.module.scss'
 import loginImg from '../../assets/login.png'
 import Card from '../../components/card/Card'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { login ,reset } from '../../redux/features/auth/authSlice'
+import { toast } from 'react-toastify'
+import { validateEmail } from '../../utils'
+import Loader from '../../components/loader/Loader'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const loginUser = () => {}
+    const { user, isError, isSuccess, isLoading, message, isLoggedIn} = useSelector(
+        (state) => state.auth)
+    
+      const dispatch = useDispatch()
+    
+      const navigate = useNavigate()
 
+      useEffect(() => {
+        if(isError){
+          toast.error(message)
+      }
+        if(isSuccess && isLoggedIn){
+          navigate('/')
+        }
+        dispatch(reset())
+      
+      },[isSuccess, isLoggedIn, isError,dispatch, navigate ])
+
+    const loginUser = async (e) => {
+        e.preventDefault()
+        if(!email || !password){
+          return toast.error('All Fields are Required')
+        }
+
+        if(!validateEmail(email)){
+          return toast.error('Please enter a valid email')
+        }
+     
+    
+      const userData = {
+        email,
+        password
+      }
+      console.log(userData)
+
+     await dispatch(login(userData))
+    }
+
+    if(isLoading){
+        return <Loader />
+      }
 
     return (
         <section className={`container ${styles.auth}`}>
