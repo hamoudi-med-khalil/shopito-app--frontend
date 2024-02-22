@@ -67,6 +67,26 @@ export const logout = createAsyncThunk(
 )
 
 
+//Get login Status user
+
+export const getLoginStatus = createAsyncThunk(
+  'auth/getloginstatus', 
+  async (_, ThunkAPI) => {
+    try {
+      return await authService.getLoginStatus()
+    } catch (error) {
+      const message =
+         (error.response && 
+            error.response.data && 
+            error.response.data.message) ||
+            error.message ||
+            error.toString()
+            return ThunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+
 
 const authSlice = createSlice({
   name: 'auth',
@@ -133,6 +153,24 @@ const authSlice = createSlice({
               state.isError = true
               state.message = action.payload
               toast.success(action.payload)
+           })
+         
+          .addCase(getLoginStatus.pending, (state) => {
+            state.isLoading = true
+            })
+          .addCase(getLoginStatus.fulfilled, (state, action) =>{
+            state.isLoading = false
+            state.isSuccess = true
+            state.isLoggedIn = action.payload
+            if(action.payload.message === 'invalid signature'){
+              state.isLoggedIn = false
+            } 
+            console.log(action.payload)
+            })
+            .addCase(getLoginStatus.rejected, (state, action) => {
+              state.isLoading = false
+              state.isError = true
+              state.message = action.payload
            })
          
 

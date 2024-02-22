@@ -25,12 +25,18 @@ const logout = async (userData) =>{
     const response = await axios.get(API_URL + '/logout')
     return response.data.message;
 }
+// Get login status Users
+
+const getLoginStatus = async () =>{
+    const response = await axios.get(API_URL + '/getloginstatus')
+    return response.data;
+}
 
 
 
 
 
 const authService = {
-    register, login, logout
+    register, login, logout, getLoginStatus
 }
 export default authService

@@ -7,10 +7,26 @@ import Login from './pages/auth/Login';
 import axios from 'axios';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getLoginStatus } from './redux/features/auth/authSlice';
 
 
 const App = () => {
   axios.defaults.withCredentials = true
+
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+        dispatch(getLoginStatus())
+  },[dispatch])
+
+
+
+
+
+
   return (
     <>
       <BrowserRouter>
