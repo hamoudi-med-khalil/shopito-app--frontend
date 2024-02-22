@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styles from '../header/Header.module.scss'
-import {Link, NavLink} from 'react-router-dom'
+import {Link, NavLink, useNavigate} from 'react-router-dom'
 import { FaShoppingCart, FaTimes } from 'react-icons/fa' 
 import { HiOutlineMenuAlt3 } from 'react-icons/hi' 
+import { logout, reset } from '../../redux/features/auth/authSlice'
+import { useDispatch } from 'react-redux'
 
 
 export const logo = (
@@ -38,6 +40,17 @@ function Header() {
     }
     const hideMenu  = () => {
         setShowMenu(false)
+    }
+    const dispatch = useDispatch()
+
+    
+    const navigate = useNavigate()
+
+    
+    const logoutUser = async () => {
+          dispatch(logout())
+          dispatch(reset())
+          navigate('/login')
     }
 
 
@@ -84,6 +97,9 @@ function Header() {
                         <NavLink to='/history-order' className={activeLink}>
                                 My Order
                             </NavLink>
+                        <Link to='/' onClick={logoutUser}>
+                                Logout
+                            </Link>
                     </span>
                     {cart}
                 </div>

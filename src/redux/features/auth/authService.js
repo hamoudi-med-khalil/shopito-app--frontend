@@ -19,12 +19,18 @@ const login = async (userData) =>{
     const response = await axios.post(API_URL + '/login', userData )
     return response.data
 }
+// Logout Users
+
+const logout = async (userData) =>{
+    const response = await axios.get(API_URL + '/logout')
+    return response.data.message;
+}
 
 
 
 
 
 const authService = {
-    register, login
+    register, login, logout
 }
 export default authService

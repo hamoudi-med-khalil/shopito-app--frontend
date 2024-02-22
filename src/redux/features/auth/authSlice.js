@@ -47,6 +47,24 @@ export const login = createAsyncThunk(
     }
   }
 )
+//Logout user
+
+export const logout = createAsyncThunk(
+  'auth/logout', 
+  async (_, ThunkAPI) => {
+    try {
+      return await authService.logout()
+    } catch (error) {
+      const message =
+         (error.response && 
+            error.response.data && 
+            error.response.data.message) ||
+            error.message ||
+            error.toString()
+            return ThunkAPI.rejectWithValue(message)
+    }
+  }
+)
 
 
 
@@ -78,7 +96,7 @@ const authSlice = createSlice({
               state.isError = true
               state.message = action.payload
               state.user = null
-              toast.success('action.payload')
+              toast.success(action.payload)
            })
           .addCase(login.pending, (state) => {
             state.isLoading = true
@@ -96,8 +114,27 @@ const authSlice = createSlice({
               state.isError = true
               state.message = action.payload
               state.user = null
-              toast.success('action.payload')
+              toast.success(action.payload)
            })
+         
+          .addCase(logout.pending, (state) => {
+            state.isLoading = true
+            })
+          .addCase(logout.fulfilled, (state, action) =>{
+            state.isLoading = false
+            state.isSuccess = true
+            state.isLoggedIn = false
+            state.user = null
+            toast.success(action.payload)
+            console.log(action.payload)
+            })
+            .addCase(logout.rejected, (state, action) => {
+              state.isLoading = false
+              state.isError = true
+              state.message = action.payload
+              toast.success(action.payload)
+           })
+         
 
   }
 });
