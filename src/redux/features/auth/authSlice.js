@@ -87,6 +87,60 @@ export const getLoginStatus = createAsyncThunk(
 )
 
 
+//Get User  
+
+export const getUser = createAsyncThunk(
+  'auth/getuser', 
+  async (_, ThunkAPI) => {
+    try {
+      return await authService.getUser()
+    } catch (error) {
+      const message =
+         (error.response && 
+            error.response.data && 
+            error.response.data.message) ||
+            error.message ||
+            error.toString()
+            return ThunkAPI.rejectWithValue(message)
+    }
+  }
+)
+//Update User  
+
+export const updateUser = createAsyncThunk(
+  'auth/getuser', 
+  async (userData, ThunkAPI) => {
+    try {
+      return await authService.updateUser(userData)
+    } catch (error) {
+      const message =
+         (error.response && 
+            error.response.data && 
+            error.response.data.message) ||
+            error.message ||
+            error.toString()
+            return ThunkAPI.rejectWithValue(message)
+    }
+  }
+)
+export const updatePhoto = createAsyncThunk(
+  'auth/updatephoto', 
+  async (userData, ThunkAPI) => {
+    try {
+      return await authService.updatePhoto(userData)
+    } catch (error) {
+      const message =
+         (error.response && 
+            error.response.data && 
+            error.response.data.message) ||
+            error.message ||
+            error.toString()
+            return ThunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+
 
 const authSlice = createSlice({
   name: 'auth',
@@ -152,7 +206,7 @@ const authSlice = createSlice({
               state.isLoading = false
               state.isError = true
               state.message = action.payload
-              toast.success(action.payload)
+              toast.error(action.payload)
            })
          
           .addCase(getLoginStatus.pending, (state) => {
@@ -171,6 +225,64 @@ const authSlice = createSlice({
               state.isLoading = false
               state.isError = true
               state.message = action.payload
+           })
+         
+          .addCase(getUser.pending, (state) => {
+            state.isLoading = true
+            })
+          .addCase(getUser.fulfilled, (state, action) =>{
+            state.isLoading = false
+            state.isSuccess = true
+            state.isLoggedIn = true
+            state.user = action.payload
+            console.log(action.payload)
+            })
+            .addCase(getUser.rejected, (state, action) => {
+              state.isLoading = false
+              state.isError = true
+              state.message = action.payload
+              toast.error(action.payload)
+
+           })
+
+          .addCase(updateUser.pending, (state) => {
+            state.isLoading = true
+            })
+          .addCase(updateUser.fulfilled, (state, action) =>{
+            state.isLoading = false
+            state.isSuccess = true
+            state.isLoggedIn = true
+            state.user = action.payload
+            toast.success('User Updated')
+
+            console.log(action.payload)
+            })
+            .addCase(updateUser.rejected, (state, action) => {
+              state.isLoading = false
+              state.isError = true
+              state.message = action.payload
+              toast.error(action.payload)
+
+           })
+
+          .addCase(updatePhoto.pending, (state) => {
+            state.isLoading = true
+            })
+          .addCase(updatePhoto.fulfilled, (state, action) =>{
+            state.isLoading = false
+            state.isSuccess = true
+            state.isLoggedIn = true
+            state.user = action.payload
+            toast.success('User Photo Updated')
+
+            console.log(action.payload)
+            })
+            .addCase(updatePhoto.rejected, (state, action) => {
+              state.isLoading = false
+              state.isError = true
+              state.message = action.payload
+              toast.error(action.payload)
+
            })
          
 

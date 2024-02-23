@@ -32,11 +32,24 @@ const getLoginStatus = async () =>{
     return response.data;
 }
 
+const getUser = async () =>{
+    const response = await axios.get(API_URL + '/getuser')
+    return response.data;
+}
+const updateUser = async (userData) =>{
+    const response = await axios.patch(API_URL + '/updateuser', userData)
+    return response.data;
+}
+const updatePhoto = async (userData) =>{
+    const response = await axios.patch(API_URL + '/updatephoto', userData)
+    return response.data;
+}
+
 
 
 
 
 const authService = {
-    register, login, logout, getLoginStatus
+    register, login, logout, getLoginStatus, getUser, updateUser, updatePhoto
 }
 export default authService
