@@ -40,6 +40,8 @@ const updateUser = async (userData) =>{
     const response = await axios.patch(API_URL + '/updateuser', userData)
     return response.data;
 }
+
+
 const updatePhoto = async (userData) =>{
     const response = await axios.patch(API_URL + '/updatephoto', userData)
     return response.data;

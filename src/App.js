@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getLoginStatus } from './redux/features/auth/authSlice';
+import Profile from './pages/profile/Profile';
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/profile' element={<Profile />} />
 
         </Routes>
         <Footer />

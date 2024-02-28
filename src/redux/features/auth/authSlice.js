@@ -108,7 +108,7 @@ export const getUser = createAsyncThunk(
 //Update User  
 
 export const updateUser = createAsyncThunk(
-  'auth/getuser', 
+  'auth/updateuser', 
   async (userData, ThunkAPI) => {
     try {
       return await authService.updateUser(userData)
@@ -123,6 +123,9 @@ export const updateUser = createAsyncThunk(
     }
   }
 )
+
+
+
 export const updatePhoto = createAsyncThunk(
   'auth/updatephoto', 
   async (userData, ThunkAPI) => {
@@ -237,17 +240,17 @@ const authSlice = createSlice({
             state.user = action.payload
             console.log(action.payload)
             })
-            .addCase(getUser.rejected, (state, action) => {
+
+            .addCase(getUser.rejected, (state, action) =>{
               state.isLoading = false
               state.isError = true
               state.message = action.payload
-              toast.error(action.payload)
-
            })
 
           .addCase(updateUser.pending, (state) => {
             state.isLoading = true
             })
+
           .addCase(updateUser.fulfilled, (state, action) =>{
             state.isLoading = false
             state.isSuccess = true
@@ -257,11 +260,11 @@ const authSlice = createSlice({
 
             console.log(action.payload)
             })
+
             .addCase(updateUser.rejected, (state, action) => {
               state.isLoading = false
               state.isError = true
               state.message = action.payload
-              toast.error(action.payload)
 
            })
 
@@ -273,15 +276,13 @@ const authSlice = createSlice({
             state.isSuccess = true
             state.isLoggedIn = true
             state.user = action.payload
-            toast.success('User Photo Updated')
-
+            toast.success('User Updated')
             console.log(action.payload)
             })
             .addCase(updatePhoto.rejected, (state, action) => {
               state.isLoading = false
               state.isError = true
               state.message = action.payload
-              toast.error(action.payload)
 
            })
          
