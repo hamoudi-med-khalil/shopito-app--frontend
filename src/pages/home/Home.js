@@ -29,6 +29,7 @@ function Home() {
     return (
         <>
             <Slider />
+
             <section>
                 <div className='container' >
                     <HomeInfoBox />
@@ -37,12 +38,14 @@ function Home() {
                 </div>
 
             </section>
+
             <section className='--bg-grey'>
                 <div className='container '>
                     <PageHeading heading={'Categories'} />
                     <ProductCategory />
                 </div>
             </section>
+            
             <section>
                 <div className='container' >
                     <HomeInfoBox />

@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getLoginStatus } from './redux/features/auth/authSlice';
 import Profile from './pages/profile/Profile';
+import { Products } from './pages/products/Products';
 
 
 const App = () => {
@@ -41,6 +42,8 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/products' element={<Products />} />
 
         </Routes>
         <Footer />

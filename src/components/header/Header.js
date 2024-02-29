@@ -123,6 +123,12 @@ function Header() {
                                     Logout
                                 </Link>
                             </ShowOnLogin>
+                            
+                            <ShowOnLogin>
+                                <Link to='/profile' >
+                                    Profile
+                                </Link>
+                            </ShowOnLogin>
                     </span>
                     {cart}
                 </div>
